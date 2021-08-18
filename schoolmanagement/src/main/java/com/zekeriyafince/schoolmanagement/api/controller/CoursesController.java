@@ -1,11 +1,12 @@
 package com.zekeriyafince.schoolmanagement.api.controller;
 
+import com.zekeriyafince.schoolmanagement.entity.concretes.Course;
 import com.zekeriyafince.schoolmanagement.service.abstracts.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
@@ -18,8 +19,33 @@ public class CoursesController {
         this.courseService = courseService;
     }
 
-    @GetMapping("courses")
+    @GetMapping("course")
     public ResponseEntity<?> getCourses() {
         return ResponseEntity.ok(this.courseService.getCourses());
     }
+
+    @GetMapping("course/{id}")
+    public ResponseEntity<?> getCourseById(@PathVariable Long id) {
+        return ResponseEntity.ok(this.courseService.getCourseById(id));
+    }
+
+    @PostMapping("course")
+    public ResponseEntity<?> createCourse(@Valid @RequestBody Course course) {
+        Course newCourse = this.courseService.createCourse(course);
+        return ResponseEntity.ok(newCourse);
+    }
+
+    @PutMapping("course/{id}")
+    public ResponseEntity<?> updateCourse(@Valid @PathVariable("id") Long id,
+                                          @RequestBody Course course) {
+        final Course updateCourse = this.courseService.updateCourse(id, course);
+        return ResponseEntity.ok(updateCourse);
+    }
+
+    @DeleteMapping("course/{id}")
+    public ResponseEntity<?> deleteCourse(@PathVariable("id") Long id) {
+        this.courseService.deleteCourse(id);
+        return ResponseEntity.ok("Course Deleted !");
+    }
+
 }
