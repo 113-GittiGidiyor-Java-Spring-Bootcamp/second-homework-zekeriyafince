@@ -1,6 +1,7 @@
 package com.zekeriyafince.schoolmanagement.api.controller;
 
 import com.zekeriyafince.schoolmanagement.dto.CourseCreateDto;
+import com.zekeriyafince.schoolmanagement.dto.CourseUpdateDto;
 import com.zekeriyafince.schoolmanagement.dto.CourseViewDto;
 import com.zekeriyafince.schoolmanagement.entity.concretes.Course;
 import com.zekeriyafince.schoolmanagement.service.abstracts.CourseService;
@@ -39,8 +40,8 @@ public class CoursesController {
 
     @PutMapping("course/{id}")
     public ResponseEntity<?> updateCourse(@Valid @PathVariable("id") Long id,
-                                          @RequestBody Course course) {
-        final Course updateCourse = this.courseService.updateCourse(id, course);
+                                          @RequestBody CourseUpdateDto courseUpdateDto) {
+        final CourseViewDto updateCourse = this.courseService.updateCourse(id, courseUpdateDto);
         return ResponseEntity.ok(updateCourse);
     }
 
