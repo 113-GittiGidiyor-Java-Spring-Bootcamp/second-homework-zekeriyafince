@@ -36,5 +36,11 @@ public class Course {
     @ManyToOne
     private Instructor instructor;
 
-
+    public Course(String name, String courseCode, int credit, List<Student> students, Instructor instructor) {
+        this.name = name;
+        this.courseCode = courseCode;
+        this.credit = credit;
+        this.students = students;
+        this.instructor = instructor;
+    }
 }

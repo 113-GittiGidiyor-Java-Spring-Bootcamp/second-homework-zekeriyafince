@@ -1,5 +1,7 @@
 package com.zekeriyafince.schoolmanagement.service.abstracts;
 
+import com.zekeriyafince.schoolmanagement.dto.CourseCreateDto;
+import com.zekeriyafince.schoolmanagement.dto.CourseViewDto;
 import com.zekeriyafince.schoolmanagement.entity.concretes.Course;
 
 import java.util.List;
@@ -10,7 +12,7 @@ public interface CourseService {
 
     Course getCourseById(Long id);
 
-    Course createCourse(Course course);
+    CourseViewDto createCourse(CourseCreateDto courseCreateDto);
 
     Course updateCourse(Long id, Course course);
 

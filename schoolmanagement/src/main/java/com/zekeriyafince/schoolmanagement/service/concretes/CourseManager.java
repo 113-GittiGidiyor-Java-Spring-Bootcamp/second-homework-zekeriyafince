@@ -1,5 +1,7 @@
 package com.zekeriyafince.schoolmanagement.service.concretes;
 
+import com.zekeriyafince.schoolmanagement.dto.CourseCreateDto;
+import com.zekeriyafince.schoolmanagement.dto.CourseViewDto;
 import com.zekeriyafince.schoolmanagement.entity.concretes.Course;
 import com.zekeriyafince.schoolmanagement.repository.abstracts.CourseRepository;
 import com.zekeriyafince.schoolmanagement.service.abstracts.CourseService;
@@ -29,8 +31,9 @@ public class CourseManager implements CourseService {
     }
 
     @Override
-    public Course createCourse(Course course) {
-        return this.courseRepository.save(course);
+    public CourseViewDto createCourse(CourseCreateDto courseCreateDto) {
+        final Course course = this.courseRepository.save(new Course(courseCreateDto.getName(), courseCreateDto.getCourseCode(), courseCreateDto.getCredit(), courseCreateDto.getStudents(), courseCreateDto.getInstructor()));
+        return CourseViewDto.of(course);
     }
 
     @Override

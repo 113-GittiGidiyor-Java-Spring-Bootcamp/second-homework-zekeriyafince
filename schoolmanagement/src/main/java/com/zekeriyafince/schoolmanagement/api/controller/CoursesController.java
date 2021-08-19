@@ -1,5 +1,7 @@
 package com.zekeriyafince.schoolmanagement.api.controller;
 
+import com.zekeriyafince.schoolmanagement.dto.CourseCreateDto;
+import com.zekeriyafince.schoolmanagement.dto.CourseViewDto;
 import com.zekeriyafince.schoolmanagement.entity.concretes.Course;
 import com.zekeriyafince.schoolmanagement.service.abstracts.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,9 @@ public class CoursesController {
     }
 
     @PostMapping("course")
-    public ResponseEntity<?> createCourse(@Valid @RequestBody Course course) {
-        Course newCourse = this.courseService.createCourse(course);
-        return ResponseEntity.ok(newCourse);
+    public ResponseEntity<?> createCourse(@Valid @RequestBody CourseCreateDto courseCreateDto ) {
+        CourseViewDto courseViewDto = this.courseService.createCourse(courseCreateDto);
+        return ResponseEntity.ok(courseViewDto);
     }
 
     @PutMapping("course/{id}")
